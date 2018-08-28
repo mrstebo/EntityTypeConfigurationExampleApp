@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using EntityTypeConfigurationExampleApp.Mappings;
 using EntityTypeConfigurationExampleApp.Models;
 
 namespace EntityTypeConfigurationExampleApp
@@ -24,8 +23,7 @@ namespace EntityTypeConfigurationExampleApp
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new AuthorMapping());
-            modelBuilder.Configurations.Add(new BookMapping());
+            modelBuilder.Configurations.AddFromAssembly(GetType().Assembly);
             
             base.OnModelCreating(modelBuilder);
         }
